@@ -13,9 +13,14 @@
             header("location: index.php")
             ;die()
         ;}
-        if ( isset($_POST['kosyk']) ) {
 
-            $_SESSION["koszyk"] = serialize($_POST['kosyk']);
+        if ( isset($_POST['kosyk']) ) {
+            if(!isset($_SESSION["koszyk"])){
+                $_SESSION["koszyk"] = serialize($_POST['kosyk']);
+            }
+            else{
+                $_SESSION["koszyk"] = serialize(array_unique(array_merge($_POST['kosyk'],unserialize($_SESSION["koszyk"]))));
+            }
         }
         
         foreach (unserialize($_SESSION['koszyk']) as $produkt) {

@@ -10,6 +10,7 @@
     session_start();
     if ( isset($_SESSION['log']) ) {
         unset($_SESSION['log']);
+        session_destroy();
     } else {
         header('location: index.php');
         exit();
