@@ -6,6 +6,7 @@
     <title>Koszyk</title>
 </head>
 <body>
+    <form action="usun.php" method="post">
     <?php
         session_start();
         $imie = ucfirst($_SESSION['log']);
@@ -24,8 +25,10 @@
         }
         
         foreach (unserialize($_SESSION['koszyk']) as $produkt) {
-            print($produkt . "<br>");
+            print("<label><input type='checkbox' name='do_usuniecia[]' value='$produkt'>".$produkt);
         }
     ?>
+    <input type="submit" value="usun">
+    </form>
 </body>
 </html>
